@@ -20,6 +20,7 @@ namespace zendesk_ticket_export
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(20); })
                 .Build();
     }
 }
